@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 usage="Usage: $(basename "$0") [OPTION...] DATA_FILE_1 [DATA_FILE_2 ...]
 OPTIONS:
@@ -126,7 +126,7 @@ do
         do
             # display $line or do something with $line
             echo `date` "*** Starting ${label:-area}"
-            echo $CMD -x $x -y $y -X $X -Y $Y
+            $CMD -x $x -y $y -X $X -Y $Y
             echo `date` "*** Finished ${label:-area}"
             echo
         done <"$FILE"
