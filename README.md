@@ -23,7 +23,7 @@ Each line in the file describes an area to import using geographic coordinates (
 
 - Fields separated by space 
 - LABEL field is optional and may contain spaces. It's only used in the logs.
-- **NOTE:** The file should end with anempty line. Otherwise the last area in the file will not be processed (it's a bash thing).
+- **NOTE:** The file should end with an empty line. Otherwise the last area in the file will not be processed (it's a bash thing).
 
 You can get the bounding box coordinates from [Geofabrik's Tile Calculator](http://tools.geofabrik.de/calc/) simply select the area you are interested in and copy the `Simple Copy` coordinates from the Coordinate Display (CD) tab. Make sure to use `EPSG:4326` projection.
 
@@ -31,15 +31,14 @@ You can get the bounding box coordinates from [Geofabrik's Tile Calculator](http
 The coordinates in the Data files do not represent any sort of official boundary. You should define your own data files if these don't work for you.
 
 ## render_list_geo.pl
-The underlying perl script (render_list_geo.pl) was forked from [render_list_geo.pl](https://github.com/alx77/render_list_geo.pl) and is included for convenience. Kudos to [alx77](https://github.com/alx77).
+Perl script for automatic rendering OSM tiles for renderd+mod_tile with using geographic coordinates (WGS-84). Forked from [render_list_geo.pl](https://github.com/alx77/render_list_geo.pl) and modified to accept area label for logging. 
 
-Perl script for automatic rendering OSM tiles for renderd+mod_tile with using geographic coordinates (WGS-84)
-
-
+Kudos to [alx77](https://github.com/alx77) for the original script.
 
 ### Usage:
-    ./render_list_geo.pl -n <n> -s <s> -t <t> -z <z> -Z <Z> -x <x> -X <X> -y <y> -Y <Y>
+    ./render_list_geo.pl -n <n> -s <s> -t <t> -z <z> -Z <Z> -x <x> -X <X> -y <y> -Y <Y> -C <C>
     where:
+    <C> - Optional label to include in log output
     <n> - number of concurrent threads
     <l> - maximum load
     <m> - render tiles from this map
