@@ -1,36 +1,51 @@
-# render_list_geo.pl
-Perl script for automatic rendering OSM tiles for renderd+mod_tile with using geographic coordinates (WGS-84)
+# render_list_areas
+
+## render_list_areas.sh
+
+Utility script to 'pre-render' areas of OSM map.
 
 ### Usage:
-```perl
-./render_list_geo.pl -n <n> -s <s> -t <t> -z <z> -Z <Z> -x <x> -X <X> -y <y> -Y <Y>
-```
-```
-where:
-<n> - number of concurrent threads
-<l> - maximum load
-<m> - render tiles from this map
-<s> - socket for renderd
-<t> - tiles location
-<z> - render tiles from this zoom level
-<Z> - render tiles to this zoom level
-<x> - render tiles from this longitude
-<X> - render tiles to this longitude
-<y> - render tiles from this latitude
-<Y> - render tiles to this latitude
-```
+    ./render_list_areas.sh [OPTION...] DATA_FILE_1 [DATA_FILE_2 ...]
+    OPTIONS:
+    -f, --force          render tiles even if they seem current
+    -m, --map=MAP        render tiles in this map (defaults to render_list default)
+    -l, --max-load=LOAD  sleep if load is this high (defaults to render_list default)
+    -s, --socket=SOCKET  unix domain socket name for contacting renderd (defaults to render_list default)
+    -n, --num-threads=N the number of parallel request threads (defaults to render_list default)
+    -t, --tile-dir       tile cache directory (defaults to render_list default)
+    -z, --min-zoom=ZOOM  filter input to only render tiles greater or equal to this zoom level (default is 0)
+    -Z, --max-zoom=ZOOM  filter input to only render tiles less than or equal to this zoom level (default is 20)
 
-### Samples
-```bash
-#Ukraine
-./render_list_geo.pl -n 2 -m map_name -z 6 -Z 15 -x 21.8 -X 40.7 -y 44.03 -Y 52.6
-#Belgium (using three threads)
-./render_list_geo.pl -n 3 -z 6 -Z 16 -x 2.5 -X 6.5 -y 49.4 -Y 51.6
-#The Netherlands
-./render_list_geo.pl -n 2 -m default -x 3.275104 -X 7.103310 -y 50.758069 -Y 53.662826 -z 15 -Z 18
-#Belgium (using 25 threads and a maximum load of 40)
-./render_list_geo.pl -n 25 -l 40 -z 6 -Z 16 -x 2.5 -X 6.5 -y 49.4 -Y 51.6
-#Czech Republic 44 threads with specified socket and tile location
-perl ./render_list_geo.pl -m ajt -s /var/run/renderd/renderd.sock -t /var/lib/mod_tile/ajt -n 44 -z 6 -Z 6 -x 48.543905 -X 51.074211 -y 12.068158 -Y 18.912640
+## Data file:
+Each line in the file describes an area to import using geographic coordinates (WGS-84) and an optional label for the log:
 
-```
+    <START_LONGITUDE> <START_LATITUDE> <END_LONGITUDE> <END_LATITUDE> [LABEL]
+
+- Fields separated by space 
+- LABEL field is optional and may contain spaces. It's only used in the logs.
+- **NOTE:** The file should end with anempty line. Otherwise the last area in the file will not be processed (it's a bash thing).
+
+You can get the bounding box coordinates from [Geofabrik's Tile Calculator](http://tools.geofabrik.de/calc/) simply select the area you are interested in and copy the `Simple Copy` coordinates from the Coordinate Display (CD) tab. Make sure to use `EPSG:4326` projection.
+
+
+## render_list_geo.pl
+The underlying perl script (render_list_geo.pl) was forked from [render_list_geo.pl](https://github.com/alx77/render_list_geo.pl) and is included for convenience. Kudos to [alx77](https://github.com/alx77).
+
+Perl script for automatic rendering OSM tiles for renderd+mod_tile with using geographic coordinates (WGS-84)
+
+
+
+### Usage:
+    ./render_list_geo.pl -n <n> -s <s> -t <t> -z <z> -Z <Z> -x <x> -X <X> -y <y> -Y <Y>
+    where:
+    <n> - number of concurrent threads
+    <l> - maximum load
+    <m> - render tiles from this map
+    <s> - socket for renderd
+    <t> - tiles location
+    <z> - render tiles from this zoom level
+    <Z> - render tiles to this zoom level
+    <x> - render tiles from this longitude
+    <X> - render tiles to this longitude
+    <y> - render tiles from this latitude
+    <Y> - render tiles to this latitude

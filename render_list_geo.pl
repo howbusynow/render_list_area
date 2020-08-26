@@ -15,7 +15,7 @@ if ($options->{h}) {
   print "  -f             force rerender\n";
   print "  -s             socket\n";
   print "  -t             tile dir\n";
-  print "  -x <x>, -X <x> start and end longitude (in geographic coordinates, WGS84)\n";
+  print "  -x <x>, -X <x> start and end longitude ()\n";
   print "  -y <y>, -Y <y> start and end latitude (in geographic coordinates, WGS84)\n";
   print "  -z <z>, -Z <z> start and end level value\n";
   print "\n";
@@ -53,7 +53,7 @@ if (($options->{x} || $options->{x}==0) &&
 	if ($options->{n}) {$cmd = $cmd." -n ".$options->{n}};
 	if ($options->{m}) {$cmd = $cmd." -m ".$options->{m}};
 	if ($options->{l}) {$cmd = $cmd." -l ".$options->{l}};
-        if ($options->{f}) {$cmd = $cmd." -f ".$options->{f}};
+  if ($options->{f}) {$cmd = $cmd." -f ".$options->{f}};
 	if ($options->{s}) {$cmd = $cmd." -s ".$options->{s}};
 	if ($options->{t}) {$cmd = $cmd." -t ".$options->{t}};
   print $cmd."\n";
