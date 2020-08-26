@@ -27,6 +27,8 @@ Each line in the file describes an area to import using geographic coordinates (
 
 You can get the bounding box coordinates from [Geofabrik's Tile Calculator](http://tools.geofabrik.de/calc/) simply select the area you are interested in and copy the `Simple Copy` coordinates from the Coordinate Display (CD) tab. Make sure to use `EPSG:4326` projection.
 
+### Please Note
+The coordinates in the Data files do not represent any sort of official boundary. You should define your own data files if these don't work for you.
 
 ## render_list_geo.pl
 The underlying perl script (render_list_geo.pl) was forked from [render_list_geo.pl](https://github.com/alx77/render_list_geo.pl) and is included for convenience. Kudos to [alx77](https://github.com/alx77).
