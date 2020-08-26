@@ -61,10 +61,10 @@ if (($options->{x} || $options->{x}==0) &&
       if ($options->{f}) {$cmd = $cmd." -f ".$options->{f}};
       if ($options->{s}) {$cmd = $cmd." -s ".$options->{s}};
       if ($options->{t}) {$cmd = $cmd." -t ".$options->{t}};
+      print $cmd."\n";
       system($cmd);
       print("\n".$label." Zoom factor: ".$iz." finished at ");
       system("date");
-      print $cmd."\n";
     }
     print "\nRendering ".$label." finished at: ";
     system("date");

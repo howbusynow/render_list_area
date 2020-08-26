@@ -124,10 +124,7 @@ do
         # read it
         while IFS=' ' read -r x y X Y label
         do
-            # display $line or do something with $line
-            echo `date` "*** Starting ${label:-area}"
             $CMD -x $x -y $y -X $X -Y $Y -C "${label:-area}"
-            echo `date` "*** Finished ${label:-area}"
             echo
         done <"$FILE"
     else
