@@ -53,7 +53,6 @@ if (($options->{x} || $options->{x}==0) &&
       $n = 2;
       print("\n".$label." Zoom factor: ".$iz." started at: ");
       system("date");
-      print $cmd."\n";
       #be careful! y and Y used in reversed order
       $cmd="render_list -a -z ".$iz." -Z ".$iz." -x ".$x." -X ".$X." -y ".$Y." -Y ".$y;
       if ($options->{n}) {$cmd = $cmd." -n ".$options->{n}};
@@ -65,6 +64,7 @@ if (($options->{x} || $options->{x}==0) &&
       system($cmd);
       print("\n".$label." Zoom factor: ".$iz." finished at ");
       system("date");
+      print $cmd."\n";
     }
     print "\nRendering ".$label." finished at: ";
     system("date");
