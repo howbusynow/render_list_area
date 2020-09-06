@@ -23,7 +23,7 @@ FILES=""
 while (( "$#" )); do
   case "$1" in
     -f|--force)
-      FORCE="$FLAGS -f"
+      FLAGS="$FLAGS -f"
       shift
       ;;
     -m|--map)
